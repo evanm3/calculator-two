@@ -5,25 +5,84 @@
 body {
     padding: 0;
     border: 0;
-    background-color: darkgray;
+    background-color: rgb(95, 95, 95);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+}
+.display-window {
+    display: grid;
+    background-color: rgb(59, 59, 58);
+    height: 80px;
+    padding: 10px;
+    align-content: center;
+    justify-content: center;
+    border-radius: 1%;
+    box-shadow: inset 0px 0px 2px 9px rgba(0, 0, 0, 0.5);
+}
+.display { 
+    display: grid;
+    /* justify-content: end; */
+    background-color: rgb(71, 99, 82);
+    height: 50px;
+    width: 300px;
+    border-radius: 3%;
+}
+.display-top {
+    display: grid;
+    justify-content: end;
+}
+.display-bottom {
+    display: grid;
+    justify-content: end;
+    font-size: 2em;
+}
+button {
+    background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 87% at 26% 20%, rgba(255, 255, 255, 0.41) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: 2px 19px 31px rgba(0, 0, 0, 0.2);
+}
+.text {
+    color: whitesmoke;
+}
+.brand {
+    padding-bottom: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-left: 10px;
 }
 button:hover {
     filter: brightness(0.5);
 }
 .calculator {
     background-color: rgb(24, 22, 22);
-}
-.power-grid {
     display: grid;
     justify-content: center;
     align-content: center;
+    padding: 30px;
+    padding-top: 60px;
+    border-radius: 3%;
+    box-shadow: inset 0px 0px 3px 3px #75757580;
+}
+.power-grid {
+    display: grid;
+    justify-content: left;
+    padding-bottom: 30px;
+    padding-top: 30px;
     grid-template-columns: repeat(2, 50px);
-    
+}
+.power-grid > .items {
+    display: grid;
+    justify-self: center;
 }
 .power-grid > button {
+    display: grid;
     border-radius: 50%;
     height: 25px;
     width: 25px;
+    justify-content: center;
+    align-content: center;
+    justify-self: center;
 }
 .button-grid > button {
     color: whitesmoke;
@@ -34,25 +93,36 @@ button:hover {
     border-radius: 50%;
     height: 50px;
     width: 50px;
+    justify-self: center;
 }
 button.black {
     background-color: rgb(37, 37, 37);
 }
 button.green {
-    background-color: rgb(0, 65, 70);
+    background-color: rgb(1, 51, 54);
 }
 button.brown {
-    background-color: rgb(59, 38, 11);
+    background-color: rgb(54, 37, 14);
 }
 button.yellow {
     color: black;
-    background-color: rgb(255, 205, 42);
+    background-color: rgb(179, 117, 3);
 }
 .button-grid {
     display: grid;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     grid-template-columns: repeat(5, 65px);
     row-gap: 15px;
 }
+.power-grid > button {
+    border: none;
+}
+.on {
+    background-color: rgb(0, 77, 0);
+}
+.off {
+    background-color: rgb(128, 1, 1);
+}
+
