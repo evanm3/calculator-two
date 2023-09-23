@@ -37,6 +37,12 @@ function additionalNumber(num) {
     if (displayBottom.textContent === '0' || screenResetToggle){
         resetScreen();
     }
+    if (num === "."){
+        if (displayBottom.textContent.indexOf(".") > -1){
+        alert('only one decimal allowed');
+        return
+        }
+    } 
     displayBottom.textContent += num;
 }
 
