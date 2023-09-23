@@ -140,14 +140,14 @@ function percentage(operator){
 }
 
 function negative(){
-    if (displayBottom.textContent === "0" || displayBottom.textContent === null){
+    if (displayBottom.textContent === "0" || displayBottom.textContent === ""){
         resetScreen()
         displayBottom.textContent += "-";
+    } else if (displayBottom.textContent[0] === "-"){
+        displayBottom.textContent = displayBottom.textContent.slice(1, displayBottom.textContent.length);
+    } else if (displayBottom.textContent !== ""){
+        displayBottom.textContent = "-" + displayBottom.textContent;
     }
-    if (displayBottom.textContent[0] === "-"){
-        displayBottom.textContent = displayBottom.textContent.toString().slice(0, -1);    
-    }
-    console.log(displayBottom.textContent[0]);
 }
 
 
