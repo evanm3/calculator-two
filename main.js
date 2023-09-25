@@ -3,6 +3,8 @@ let secondValue = '';
 let screenResetToggle = false;
 let currentOperator = null;
 let storedValue = '';
+let memStored = ''; 
+let accumulatedMemory = '';
 
 const deleteButton = document.querySelector('.delete');
 const clearButton = document.querySelector('.clear');
@@ -11,6 +13,10 @@ const onButton = document.querySelector('.on');
 const equalsButton = document.querySelector('.equals');
 const percentageButton = document.querySelector('.percentage');
 const negativeButton = document.querySelector('.negative');
+const memPlusButton = document.querySelector(`.memory-plus`);
+const memRecallButton = document.querySelector(`.memory-recall`);
+const memClearButton = document.querySelector(`.memory-clear`);
+const memSubtractButton = document.querySelector(`.memory-subtract`);
 
 const displayTop = document.querySelector('.display-top');
 const displayBottom = document.querySelector('.display-bottom');
@@ -25,6 +31,10 @@ onButton.addEventListener('click', clear);
 equalsButton.addEventListener('click', evaluate);
 percentageButton.addEventListener('click', percentage);
 negativeButton.addEventListener('click', negative);
+memPlusButton.addEventListener('click', memPlus);
+memClearButton.addEventListener('click', memClear);
+memRecallButton.addEventListener('click', memRecall);
+memSubtractButton.addEventListener('click', memSubtract);
 
 numberButtons.forEach((button) => button.addEventListener('click', (e) =>
     additionalNumber(e.target.textContent)));
@@ -84,6 +94,9 @@ function off() {
 }
 
 function evaluate() {
+    if (currentOperator === null){
+        return
+    }
     secondValue = displayBottom.textContent;
     displayBottom.textContent = roundNumber(operate(currentOperator, firstValue, secondValue));
     displayTop.textContent = `${firstValue} ${currentOperator} ${secondValue} =`;
@@ -105,6 +118,7 @@ function operate(operator, a, b){
     else if (operator === "÷"){
         if(b === 0){
             alert("Cannot divide by 0");
+            return;
         }
         else {
         return divide(a,b);
@@ -156,4 +170,51 @@ function negative(){
     }
 }
 
+function memPlus(){
+    if (currentOperator === null){
+        return
+    }
+    secondValue = displayBottom.textContent;
+    displayBottom.textContent = roundNumber(operate(currentOperator, firstValue, secondValue));
+    displayTop.textContent = `${firstValue} ${currentOperator} ${secondValue} =`;
+    currentOperator = null;
+    memStored = Number(displayBottom.textContent);
+    screenResetToggle = true; 
+    accumulatedMemory = Number(accumulatedMemory);
+    accumulatedMemory += Number(memStored);
+}
 
+function memRecall(){
+    displayBottom.textContent = accumulatedMemory;
+}
+
+function memClear(){
+    memStored = '';
+    accumulatedMemory = '';
+    if (memStored === 0){
+        resetScreen();
+    }
+}
+
+function memSubtract(){
+    if (currentOperator === null){
+        return
+    }
+    secondValue = displayBottom.textContent;
+    displayBottom.textContent = roundNumber(operate(currentOperator, firstValue, secondValue));
+    displayTop.textContent = `${firstValue} ${currentOperator} ${secondValue} =`;
+    currentOperator = null;
+    
+    memStored = Number(displayBottom.textContent);
+    
+    console.log(memStored);
+    console.log(typeof(memStored));
+    screenResetToggle = true; 
+    
+    accumulatedMemory += (Number(memStored));
+    accumulatedMemory = Number(accumulatedMemory* -1);
+    console.log(accumulatedMemory)
+    
+    console.log(typeof(accumulatedMemory));
+    
+}
