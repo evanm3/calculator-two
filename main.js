@@ -17,6 +17,7 @@ const memPlusButton = document.querySelector(`.memory-plus`);
 const memRecallButton = document.querySelector(`.memory-recall`);
 const memClearButton = document.querySelector(`.memory-clear`);
 const memSubtractButton = document.querySelector(`.memory-subtract`);
+const squareRootButton = document.querySelector('.square-root');
 
 const displayTop = document.querySelector('.display-top');
 const displayBottom = document.querySelector('.display-bottom');
@@ -35,6 +36,7 @@ memPlusButton.addEventListener('click', memPlus);
 memClearButton.addEventListener('click', memClear);
 memRecallButton.addEventListener('click', memRecall);
 memSubtractButton.addEventListener('click', memSubtract);
+squareRootButton.addEventListener('click', squareRoot);
 
 numberButtons.forEach((button) => button.addEventListener('click', (e) =>
     additionalNumber(e.target.textContent)));
@@ -204,17 +206,21 @@ function memSubtract(){
     displayBottom.textContent = roundNumber(operate(currentOperator, firstValue, secondValue));
     displayTop.textContent = `${firstValue} ${currentOperator} ${secondValue} =`;
     currentOperator = null;
-    
+
     memStored = Number(displayBottom.textContent);
     
     console.log(memStored);
     console.log(typeof(memStored));
     screenResetToggle = true; 
-    
-    accumulatedMemory += (Number(memStored));
-    accumulatedMemory = Number(accumulatedMemory* -1);
+    if (accumulatedMemory === ''){
+        accumulatedMemory = Number(memStored + memStored);
+    }
+    accumulatedMemory -= memStored;
+
     console.log(accumulatedMemory)
-    
     console.log(typeof(accumulatedMemory));
-    
+}
+
+function squareRoot(){
+    displayBottom.textContent = Math.sqrt(Number(displayBottom.textContent));
 }
