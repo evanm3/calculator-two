@@ -37,6 +37,7 @@ memClearButton.addEventListener('click', memClear);
 memRecallButton.addEventListener('click', memRecall);
 memSubtractButton.addEventListener('click', memSubtract);
 squareRootButton.addEventListener('click', squareRoot);
+window.addEventListener('keydown', keyboardInput);
 
 numberButtons.forEach((button) => button.addEventListener('click', (e) =>
     additionalNumber(e.target.textContent)));
@@ -208,19 +209,44 @@ function memSubtract(){
     currentOperator = null;
 
     memStored = Number(displayBottom.textContent);
-    
-    console.log(memStored);
-    console.log(typeof(memStored));
     screenResetToggle = true; 
     if (accumulatedMemory === ''){
         accumulatedMemory = Number(memStored + memStored);
     }
     accumulatedMemory -= memStored;
-
-    console.log(accumulatedMemory)
-    console.log(typeof(accumulatedMemory));
 }
 
 function squareRoot(){
     displayBottom.textContent = Math.sqrt(Number(displayBottom.textContent));
+}
+
+function keyboardInput(e){
+    console.log(e);
+    if (e.key >= 0 && e.key <= 9){
+        additionalNumber(e.key);
+    }
+    if (e.key === "Backspace") {
+        deleteCharacter(e.key);
+    }
+    if (e.key === "Enter") {
+        evaluate();
+    }
+    if (e.key === "Escape") {
+        clear();
+    }
+    if (e.key === "+") {
+        setOperation(e.key);
+    }
+    if (e.key === "-") {
+        setOperation(e.key);
+    }
+    if (e.key === "/") {
+        setOperation("÷");
+    }
+    if (e.key === "*") {
+        setOperation("x");
+    }
+    if (e.key === "%") {
+        percentage();
+    }
 }
